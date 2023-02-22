@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="overlay-add"></div>
+    <div class="overlay-edit"></div>
+    <div class="overlay-details"></div>
+    <div class="content" id="content">
+        
+        <header class="header">
+            <h2>To-Do</h2>
+            <img src="images/notebook.svg" alt="Notebook icon">
+        </header>
+        
+        <nav class="side-bar">
+            <ul class="nav">
+                <li class="nav-item main home">
+                    <span>Home</span>
+                </li>
+                <li class="nav-item main today">
+                    <span>Today</span>
+                </li>
+                <li class="nav-item main week">
+                    <span>Week</span>
+                </li>
+
+                <li class="nav-item projects">
+                    <span>Projects</span>
+                    <ul class="projects">
+                        
+                    </ul>
+                </li>
+
+            </ul>
+            <button class="new-todo">+</button>
+        </nav>
+
+        <div class="main-content">
+            <main class="main">
+                <div class="dummy-todo">
+                    <div class="todo-complete"></div>
+                    <div class="todo-title">Make a to-do list with Javascript</div>
+                    <button class="details">DETAILS</button>
+                    <div class="todo-date">Feb 23rd</div>
+                    <div class="todo-edit icon">
+                        <img src="images/note-edit.svg" alt="edit icon">
+                    </div>
+                    <div class="todo-del icon">
+                        <img src="images/trash-can.svg" alt="delete icon">
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+</body>
+</html>
