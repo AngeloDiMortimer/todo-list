@@ -1,1 +1,1 @@
-console.log("works");
+(()=>{"use strict";(()=>{document.getElementById("main");const e=document.getElementById("new-todo"),t=document.getElementById("overlay-add"),d=document.getElementById("overlay-bg"),c=document.getElementById("todo-form");e.addEventListener("click",(e=>{((e,t,d)=>{d.reset(),e.classList.add("active"),t.classList.add("active")})(t,d,c)})),d.addEventListener("click",(e=>{((e,t)=>{e.classList.remove("active"),t.classList.remove("active")})(t,d)}))})()})();
