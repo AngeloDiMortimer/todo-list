@@ -122,6 +122,7 @@ body {
     background-color: #e5e7eb;
     padding: 1rem;
     border-left: 3px solid red;
+    margin-bottom: 1rem;
 }
 
 .todo-complete {
@@ -209,6 +210,11 @@ body {
 .overlay-add.active {
     transform: translate(-50%, -50%) scale(1);
 }
+
+.close-modal {
+    cursor: pointer;
+}
+
 
 .overlay-bg {
     position: fixed;

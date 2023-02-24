@@ -18,7 +18,7 @@
         <form class="todo-form" id="todo-form">
             <div class="modal-add-header">
                 <h2>Create a new...</h2>
-                <div class="close-modal">x</div>
+                <div class="close-modal" id="close-modal">x</div>
             </div>
             
             <div class="modal-add-content">
@@ -52,15 +52,15 @@
                     <div class="create-priority">
                         
                         <div class="priority-title">Priority:</div>
-                        <input type="radio" id="create-new-low"  
+                        <input type="radio" id="create-new low"  
                         name="create-new-priority" value="low" required>
                         <label for="create-new-low" class="create-new-priority low">Low</label>
         
-                        <input type="radio" id="create-new-medium" 
+                        <input type="radio" id="create-new medium" 
                         name="create-new-priority" value="medium" required>
                         <label for="create-new-medium" class="create-new-priority medium">Medium</label>
         
-                        <input type="radio" id="create-new-high" 
+                        <input type="radio" id="create-new high" 
                         name="create-new-priority" value="high" >
                         <label for="create-new-high" class="create-new-priority high">High</label >
 
@@ -120,6 +120,8 @@
                         <img src="images/trash-can.svg" alt="delete icon">
                     </div>
                 </div>
+
+                
             </main>
         </div>
 
