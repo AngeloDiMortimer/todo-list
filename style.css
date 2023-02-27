@@ -111,9 +111,12 @@ body {
 .main-content {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
-    padding: 2rem;
+    padding: 0rem 2rem;
     background-color: #f8fafc;
+    border-top: 2rem solid #f8fafc;
+    border-bottom: 2rem solid #f8fafc;
     border-bottom-right-radius: 1rem;
+    overflow-y: auto;
 }
 
 .item-todo {
