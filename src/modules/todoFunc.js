@@ -20,10 +20,7 @@ const getFormInput = () => {
 
 const addTodo = () => {
     let todoItem = getFormInput();
-    console.log(todoItem.title);
-    console.log(todoItem.details);
-    console.log(todoItem.date);
-    console.log(todoItem.priority);
+    return todoItem;
 }
 
 export default addTodo;

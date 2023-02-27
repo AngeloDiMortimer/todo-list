@@ -1,13 +1,71 @@
 import addTodo from "./todoFunc";
 
-const createTodo = () => {
+import {format} from "date-fns"
+import { el } from "date-fns/locale";
+
+const main = document.getElementById("main");
+const newTodoBtn = document.getElementById("new-todo");
+const modalAdd = document.getElementById("overlay-add");
+const overlayBg = document.getElementById("overlay-bg");
+const todoForm = document.getElementById("todo-form");
+const closeX = document.getElementById("close-modal");
+const submitBtn = document.getElementById("todo-submit");
+
+/* Displays the to-do using the inputs from the form */
+const displayTodo = () => {
+
     const itemTodo = document.createElement("div");
+    const todoComplete = document.createElement("div");
+    const todoTitle = document.createElement("div");
+    const btnDetails = document.createElement("button");
+    const todoDate = document.createElement("div");
+    const todoEdit = document.createElement("div");
+    const todoDel = document.createElement("div");
+    const iconEdit = document.createElement("img");
+    const iconDel = document.createElement("img");
 
     itemTodo.classList.add("item-todo");
+    todoComplete.classList.add("todo-complete");
+    todoTitle.classList.add("todo-title");
+    btnDetails.classList.add("details");
+    todoDate.classList.add("todo-date")
+    todoEdit.classList.add("todo-edit");
+    todoEdit.classList.add("icon");
+    todoDel.classList.add("todo-del");
+    todoDel.classList.add("icon");
 
-    return itemTodo;
+    let todoData = addTodo();
+
+    todoTitle.textContent = todoData.title;
+    btnDetails.textContent = "DETAILS";
+    
+    /*convert date into an string with the format "Jan 12th" */
+    const dateObject = new Date(todoData.date);
+    const dateMonth = format(dateObject, "MMM");
+    const dateDay = format(dateObject, "do");
+    const dateFormated = `${dateMonth} ${dateDay}`;
+    
+    todoDate.textContent = dateFormated;
+
+    iconEdit.src = "images/note-edit.svg";
+    iconEdit.alt = "edit icon";
+
+    iconDel.src = "images/trash-can.svg";
+    iconDel.alt = "delete icon";
+
+    todoDel.appendChild(iconDel);
+    todoEdit.appendChild(iconEdit);
+
+    itemTodo.appendChild(todoComplete);
+    itemTodo.appendChild(todoTitle);
+    itemTodo.appendChild(btnDetails);
+    itemTodo.appendChild(todoDate);
+    itemTodo.appendChild(todoEdit);
+    itemTodo.appendChild(todoDel);
+
+    main.appendChild(itemTodo);
+
 }
-
 
 /* opens the modal and deletes any previous unsubmitted data */
 const setActive = (button, overlay, todoForm) => {
@@ -25,14 +83,6 @@ const closeModal = (modalAdd, overlay) => {
 /* Handles the interaction between de user and the UI */
 const loadTodo = () => {
     
-    const main = document.getElementById("main");
-    const newTodoBtn = document.getElementById("new-todo");
-    const modalAdd = document.getElementById("overlay-add");
-    const overlayBg = document.getElementById("overlay-bg");
-    const todoForm = document.getElementById("todo-form");
-    const closeX = document.getElementById("close-modal");
-    const submitBtn = document.getElementById("todo-submit");
-
     newTodoBtn.addEventListener("click", (e) => {
         setActive(modalAdd, overlayBg, todoForm);
     });
@@ -46,7 +96,8 @@ const loadTodo = () => {
     });
 
     submitBtn.addEventListener("click", (e) => {
-        addTodo();
+        displayTodo();
+        closeModal(modalAdd, overlayBg);
     });
 }
 
