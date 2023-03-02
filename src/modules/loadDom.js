@@ -11,8 +11,13 @@ const todoForm = document.getElementById("todo-form");
 const closeX = document.getElementById("close-modal");
 const submitBtn = document.getElementById("todo-submit");
 
+const addTodoItem = (todoData) => {
+    
+    displayTodo(todoData[todoData.length - 1]);
+}
+
 /* Displays the to-do using the inputs from the form */
-const displayTodo = () => {
+const displayTodo = (todoData) => {
 
     const itemTodo = document.createElement("div");
     const todoComplete = document.createElement("div");
@@ -33,8 +38,6 @@ const displayTodo = () => {
     todoEdit.classList.add("icon");
     todoDel.classList.add("todo-del");
     todoDel.classList.add("icon");
-
-    let todoData = addTodo();
 
     todoTitle.textContent = todoData.title;
     btnDetails.textContent = "DETAILS";
@@ -65,6 +68,8 @@ const displayTodo = () => {
 
     main.appendChild(itemTodo);
 
+
+
 }
 
 /* opens the modal and deletes any previous unsubmitted data */
@@ -82,6 +87,12 @@ const closeModal = (modalAdd, overlay) => {
 
 /* Handles the interaction between de user and the UI */
 const loadTodo = () => {
+
+    let localData = JSON.parse(localStorage.getItem("todos"));
+
+    for (let index in localData) {
+        displayTodo(localData[index]);
+    }
     
     newTodoBtn.addEventListener("click", (e) => {
         setActive(modalAdd, overlayBg, todoForm);
@@ -96,7 +107,8 @@ const loadTodo = () => {
     });
 
     submitBtn.addEventListener("click", (e) => {
-        displayTodo();
+        let todoData = addTodo();
+        addTodoItem(todoData);
         closeModal(modalAdd, overlayBg);
     });
 }

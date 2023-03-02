@@ -1,3 +1,5 @@
+
+
 class Todo {
     constructor (title, details, date, priority) {
 
@@ -19,8 +21,20 @@ const getFormInput = () => {
 }
 
 const addTodo = () => {
-    let todoItem = getFormInput();
-    return todoItem;
+    let todosArray;
+    let todoObj = getFormInput();
+
+    if (localStorage.getItem("todos") === null) {
+        todosArray = [];
+    }
+
+    else {
+        todosArray = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    todosArray.push(todoObj);
+    localStorage.setItem("todos", JSON.stringify(todosArray));
+    return todosArray;
 }
 
 export default addTodo;
