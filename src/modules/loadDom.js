@@ -1,4 +1,4 @@
-import addTodo from "./todoFunc";
+import {addTodo, removeToDo} from "./todoFunc";
 
 import {format} from "date-fns"
 import { el } from "date-fns/locale";
@@ -10,6 +10,7 @@ const overlayBg = document.getElementById("overlay-bg");
 const todoForm = document.getElementById("todo-form");
 const closeX = document.getElementById("close-modal");
 const submitBtn = document.getElementById("todo-submit");
+
 
 const addTodoItem = (todoData) => {
     
@@ -68,9 +69,13 @@ const displayTodo = (todoData) => {
 
     main.appendChild(itemTodo);
 
-
+    todoDel.addEventListener("click", () => {
+        removeToDo(todoData.title);
+        itemTodo.remove();
+    })
 
 }
+
 
 /* opens the modal and deletes any previous unsubmitted data */
 const setActive = (button, overlay, todoForm) => {

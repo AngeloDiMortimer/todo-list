@@ -1,4 +1,4 @@
-
+let todosArray;
 
 class Todo {
     constructor (title, details, date, priority) {
@@ -20,8 +20,24 @@ const getFormInput = () => {
     return new Todo(title, details, date, priority);
 }
 
+const removeToDo = (title) => {
+    
+    if (localStorage.getItem("todos") === null) {
+        todosArray = [];
+    }
+
+    else {
+        todosArray = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    let index = todosArray.findIndex(id => id.title == title);
+    todosArray.splice(index, 1);
+    
+    localStorage.setItem("todos", JSON.stringify(todosArray));
+}
+
 const addTodo = () => {
-    let todosArray;
+    
     let todoObj = getFormInput();
 
     if (localStorage.getItem("todos") === null) {
@@ -37,4 +53,7 @@ const addTodo = () => {
     return todosArray;
 }
 
-export default addTodo;
+export {
+    addTodo,
+    removeToDo
+};
