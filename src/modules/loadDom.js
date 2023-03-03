@@ -10,6 +10,8 @@ const overlayBg = document.getElementById("overlay-bg");
 const todoForm = document.getElementById("todo-form");
 const closeX = document.getElementById("close-modal");
 const submitBtn = document.getElementById("todo-submit");
+const overlayDetails = document.getElementById("overlay-details");
+
 
 
 const addTodoItem = (todoData) => {
@@ -33,7 +35,7 @@ const displayTodo = (todoData) => {
     itemTodo.classList.add("item-todo");
     todoComplete.classList.add("todo-complete");
     todoTitle.classList.add("todo-title");
-    btnDetails.classList.add("details");
+    btnDetails.classList.add("details-btn");
     todoDate.classList.add("todo-date")
     todoEdit.classList.add("todo-edit");
     todoEdit.classList.add("icon");
@@ -69,6 +71,16 @@ const displayTodo = (todoData) => {
 
     main.appendChild(itemTodo);
 
+    btnDetails.addEventListener("click", (e) => {
+        setActive(overlayDetails, overlayBg);
+        showDetails(todoData, dateFormated);
+    })
+
+    overlayBg.addEventListener("click", () => {
+        closeModal(overlayDetails, overlayBg);
+
+    })
+
     todoDel.addEventListener("click", () => {
         removeToDo(todoData.title);
         itemTodo.remove();
@@ -76,10 +88,85 @@ const displayTodo = (todoData) => {
 
 }
 
+const showDetails = (todoData, dateFormated) => {
+
+    const detailsCont = document.getElementById("details-cont");
+
+    detailsCont.innerHTML = ""; //clears out the contents
+    
+    //name element
+    const name = document.createElement("div");
+    name.classList.add("details-title");
+    name.textContent = todoData.title;
+
+    //project element
+    const project = document.createElement("div");
+    project.classList.add("details-project");
+    
+    const projectTitle = document.createElement("span");
+    projectTitle.textContent = "Project: ";
+
+    const projectContent = document.createElement("span");
+    
+    //priority element
+    const prio = document.createElement("div");
+    prio.classList.add("details-priority");
+
+    const prioTitle = document.createElement("span");
+    prioTitle.textContent = "Priority: ";
+
+    const prioCont = document.createElement("span");
+
+    //Capitalizes the first letter of the priority value given
+    const priorityValue = todoData.priority;
+    const capitalize = priorityValue.charAt(0).toUpperCase()
+                       + priorityValue.slice(1);
+    
+    prioCont.textContent = capitalize;
+
+    //date element
+    const date = document.createElement("div");
+    date.classList.add("details-date");
+
+    const dateTitle = document.createElement("span");
+    dateTitle.textContent = "Date Due: ";
+
+    const dateCont = document.createElement("span");
+    dateCont.textContent = dateFormated;
+
+    //details element
+    const details = document.createElement("div");
+    details.classList.add("details-text");
+
+    const detailsTitle = document.createElement("span");
+    detailsTitle.textContent = "Details: ";
+
+    const detailsContent = document.createElement("span");
+    detailsContent.textContent = todoData.details;
+
+    //renders the contents
+    project.appendChild(projectTitle);
+
+    prio.appendChild(prioTitle);
+    prio.appendChild(prioCont);
+
+    date.appendChild(dateTitle);
+    date.appendChild(dateCont);
+
+    details.appendChild(detailsTitle);
+    details.appendChild(detailsContent);
+
+    detailsCont.appendChild(name);
+    detailsCont.appendChild(project);
+    detailsCont.appendChild(prio);
+    detailsCont.appendChild(date);
+    detailsCont.appendChild(details);
+}
+
 
 /* opens the modal and deletes any previous unsubmitted data */
-const setActive = (button, overlay, todoForm) => {
-    todoForm.reset();
+const setActive = (button, overlay) => {
+    
     button.classList.add("active");
     overlay.classList.add("active");
 }
@@ -100,7 +187,8 @@ const loadTodo = () => {
     }
     
     newTodoBtn.addEventListener("click", (e) => {
-        setActive(modalAdd, overlayBg, todoForm);
+        todoForm.reset();
+        setActive(modalAdd, overlayBg);
     });
 
     overlayBg.addEventListener("click", (e) => {
