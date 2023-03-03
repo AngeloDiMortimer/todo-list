@@ -140,7 +140,7 @@ body {
     margin-right: auto;
 }
 
-.details {
+.details-btn {
     position: relative;
     margin-right: 2.5rem;
     padding: .5rem 1rem;
@@ -154,7 +154,7 @@ body {
     transition: all .3s;
 }
 
-.details:hover {
+.details-btn:hover {
     color: #f8fafc;
     background-color: #3ba395;
 }
@@ -231,4 +231,22 @@ body {
 
 .overlay-bg.active {
     display: block;
+}
+
+.overlay-details {
+    background-color: #8412bd;
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    padding: 20px;
+    transition: 0.2s ease-in-out;
+    position: fixed;
+    transform: translate(-50%, -50%) scale(0);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.overlay-details.active {
+    transform: translate(-50%, -50%) scale(1);
 }
