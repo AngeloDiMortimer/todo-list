@@ -8,16 +8,14 @@ const newTodoBtn = document.getElementById("new-todo");
 const modalAdd = document.getElementById("overlay-add");
 const overlayBg = document.getElementById("overlay-bg");
 const todoForm = document.getElementById("todo-form");
+const todoFormEdit = document.getElementById("todo-form-edit");
 const closeX = document.getElementById("close-modal");
+const closeXEdit = document.getElementById("close-edit");
+const closeXDet = document.getElementById("close-details");
 const submitBtn = document.getElementById("todo-submit");
 const overlayDetails = document.getElementById("overlay-details");
+const overlayEdit = document.getElementById("overlay-edit");
 
-
-
-const addTodoItem = (todoData) => {
-    
-    displayTodo(todoData[todoData.length - 1]);
-}
 
 /* Displays the to-do using the inputs from the form */
 const displayTodo = (todoData) => {
@@ -73,13 +71,9 @@ const displayTodo = (todoData) => {
 
     btnDetails.addEventListener("click", (e) => {
         setActive(overlayDetails, overlayBg);
-        showDetails(todoData, dateFormated);
+        showDetails(todoData);
     })
 
-    overlayBg.addEventListener("click", () => {
-        closeModal(overlayDetails, overlayBg);
-
-    })
 
     todoDel.addEventListener("click", () => {
         removeToDo(todoData.title);
@@ -88,7 +82,8 @@ const displayTodo = (todoData) => {
 
 }
 
-const showDetails = (todoData, dateFormated) => {
+/*Renders a windows showing the details when "DETAILS" button is pressed */
+const showDetails = (todoData) => {
 
     const detailsCont = document.getElementById("details-cont");
 
@@ -132,6 +127,13 @@ const showDetails = (todoData, dateFormated) => {
     dateTitle.textContent = "Date Due: ";
 
     const dateCont = document.createElement("span");
+
+    //formats the complete date
+    const dateObject = new Date(todoData.date);
+    const dateMonth = format(dateObject, "MMMM");
+    const dateDay = format(dateObject, "do");
+    const dateYear = format(dateObject, "y")
+    const dateFormated = `${dateMonth} ${dateDay}, ${dateYear}`;
     dateCont.textContent = dateFormated;
 
     //details element
@@ -163,6 +165,11 @@ const showDetails = (todoData, dateFormated) => {
     detailsCont.appendChild(details);
 }
 
+/* Adds a Todo */
+const addTodoItem = (todoData) => {
+    
+    displayTodo(todoData[todoData.length - 1]);
+}
 
 /* opens the modal and deletes any previous unsubmitted data */
 const setActive = (button, overlay) => {
@@ -193,10 +200,15 @@ const loadTodo = () => {
 
     overlayBg.addEventListener("click", (e) => {
         closeModal(modalAdd, overlayBg);
+        closeModal(overlayDetails);
     });
 
     closeX.addEventListener("click", (e) => {
         closeModal(modalAdd, overlayBg);
+    });
+
+    closeXDet.addEventListener("click", () => {
+        closeModal(overlayDetails, overlayBg);
     });
 
     submitBtn.addEventListener("click", (e) => {
