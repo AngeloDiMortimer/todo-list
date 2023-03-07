@@ -13,6 +13,9 @@ const submitBtn = document.getElementById("todo-submit");
 const overlayDetails = document.getElementById("overlay-details");
 const closeDet = document.getElementById("close-details");
 
+const overlayEdit = document.getElementById("overlay-edit");
+const closeEdit = document.getElementById("close-edit");
+
 
 
 const addTodoItem = (todoData) => {
@@ -77,9 +80,9 @@ const displayTodo = (todoData) => {
         showDetails(todoData, dateFormated);
     })
 
-    overlayBg.addEventListener("click", () => {
-        closeModal(overlayDetails, overlayBg);
 
+    todoEdit.addEventListener("click", (e) => {
+        setActive(overlayEdit, overlayBg);
     })
 
     todoDel.addEventListener("click", () => {
@@ -200,6 +203,8 @@ const loadTodo = () => {
 
     overlayBg.addEventListener("click", (e) => {
         closeModal(modalAdd, overlayBg);
+        closeModal(overlayDetails, overlayBg);
+        closeModal(overlayEdit, overlayBg);
     });
 
     closeX.addEventListener("click", (e) => {
@@ -209,6 +214,10 @@ const loadTodo = () => {
     closeDet.addEventListener("click", (e) => {
         closeModal(overlayDetails, overlayBg);
     });
+
+    closeEdit.addEventListener("click", (e) => {
+        closeModal(overlayEdit, overlayBg);
+    })
 
     submitBtn.addEventListener("click", (e) => {
         let todoData = addTodo();
