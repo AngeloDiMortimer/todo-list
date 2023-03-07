@@ -11,6 +11,7 @@ const todoForm = document.getElementById("todo-form");
 const closeX = document.getElementById("close-modal");
 const submitBtn = document.getElementById("todo-submit");
 const overlayDetails = document.getElementById("overlay-details");
+const closeDet = document.getElementById("close-details");
 
 
 
@@ -88,7 +89,7 @@ const displayTodo = (todoData) => {
 
 }
 
-const showDetails = (todoData, dateFormated) => {
+const showDetails = (todoData) => {
 
     const detailsCont = document.getElementById("details-cont");
 
@@ -129,7 +130,13 @@ const showDetails = (todoData, dateFormated) => {
     date.classList.add("details-date");
 
     const dateTitle = document.createElement("span");
-    dateTitle.textContent = "Date Due: ";
+    
+    /* converts date into an string with the format "January 12th, 2023" */
+    const dateObject = new Date(todoData.date);
+    const dateMonth = format(dateObject, "MMMM");
+    const dateDay = format(dateObject, "do");
+    const dateYear = format(dateObject, "y")
+    const dateFormated = `${dateMonth} ${dateDay}, ${dateYear}`;
 
     const dateCont = document.createElement("span");
     dateCont.textContent = dateFormated;
@@ -197,6 +204,10 @@ const loadTodo = () => {
 
     closeX.addEventListener("click", (e) => {
         closeModal(modalAdd, overlayBg);
+    });
+    
+    closeDet.addEventListener("click", (e) => {
+        closeModal(overlayDetails, overlayBg);
     });
 
     submitBtn.addEventListener("click", (e) => {
