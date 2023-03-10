@@ -58,7 +58,7 @@
                         <label for="create-new-medium" class="create-new-priority medium">Medium</label>
         
                         <input type="radio" id="create-new high" 
-                        name="create-new-priority" value="high" >
+                        name="create-new-priority" value="high" required>
                         <label for="create-new-high" class="create-new-priority high">High</label >
 
                     </div>   
@@ -73,67 +73,16 @@
     </div>
     
     <div class="overlay-edit" id="overlay-edit">
-        <form class="todo-form" id="todo-form-edit">
-            <div class="modal-add-header">
-                <div class="close-modal" id="close-edit">x</div>
-            </div>
-            <div class="new-entry">
-                <textarea class="create-new-input" placeholder="Title: Pay the rent" 
-                id="new-todo-title" name="new-todo" maxlength="40" required></textarea>
-                
-                <textarea class="create-new-input create-new-input-big" 
-                placeholder="Details: e.g internet, phone, rent." id="new-todo-details" 
-                name="new-todo"></textarea>
-                    
-                
-                <div class="create-new-date">
-                    <div class="create-new-date-title">Due Date:</div>
-                    <input type="date" class="create-new-date-input"id="new-todo-date" 
-                    name="new-todo" required>
-                </div>
-
-                <div class="create-new-priority-submit-wrapper">
-                    <div class="create-priority">
-                        
-                        <div class="priority-title">Priority:</div>
-                        <input type="radio" id="create-new low"  
-                        name="create-new-priority" value="low" required>
-                        <label for="create-new-low" class="create-new-priority low">Low</label>
-        
-                        <input type="radio" id="create-new medium" 
-                        name="create-new-priority" value="medium" required>
-                        <label for="create-new-medium" class="create-new-priority medium">Medium</label>
-        
-                        <input type="radio" id="create-new high" 
-                        name="create-new-priority" value="high" >
-                        <label for="create-new-high" class="create-new-priority high">High</label >
-
-                    </div>   
-                    
-                    <input type="button" class="create-new-todo-submit" id="todo-submit" value="CONFIRM EDIT"> 
-                    
-                </div>
-            </div>
-
-        </form>
+        <div class="close-edit" id="close-edit">x</div>
+        <div class="edit-content" id="edit-content">
+            
+        </div>
     </div>
     
     <div class="overlay-details" id="overlay-details">
         <div class="close-details" id="close-details">x</div>
         <div class="details-content" id="details-cont">
-            
-            <div class="details-project" id="details-project">
-                <span class="details category">Project:</span>
-            </div>
-            <div class="details-priority" id="details-priority">
-                <span class="details priority">Priority:</span>
-            </div>
-            <div class="details-date" id="details-date">
-                <span class="details date">Due Date:</span>
-            </div>
-            <div class="details" id="details">
-                <span class="details text">Details:</span>
-            </div>
+           
         </div>
     </div>
     
