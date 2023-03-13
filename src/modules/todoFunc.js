@@ -29,8 +29,8 @@ const getEditInput = () => {
     return new Todo(editTitle, editDetails, editDate, editPriority);
 }
 
-const removeToDo = (title) => {
-    
+const saveTodosLocally = () => {
+ 
     if (localStorage.getItem("todos") === null) {
         todosArray = [];
     }
@@ -38,6 +38,11 @@ const removeToDo = (title) => {
     else {
         todosArray = JSON.parse(localStorage.getItem("todos"));
     }
+}
+
+const removeToDo = (title) => {
+    
+    saveTodosLocally();
 
     let index = todosArray.findIndex(id => id.title == title);
     todosArray.splice(index, 1);
@@ -50,13 +55,7 @@ const addEdit = (title) => {
     
     let editObj = getEditInput();
 
-    if (localStorage.getItem("todos") === null) {
-        todosArray = [];
-    }
-
-    else {
-        todosArray = JSON.parse(localStorage.getItem("todos"));
-    }
+    saveTodosLocally();
 
     let index = todosArray.findIndex(id => id.title == title);
     todosArray[index] = editObj;
@@ -71,13 +70,7 @@ const addTodo = () => {
     
     let todoObj = getFormInput();
 
-    if (localStorage.getItem("todos") === null) {
-        todosArray = [];
-    }
-
-    else {
-        todosArray = JSON.parse(localStorage.getItem("todos"));
-    }
+    saveTodosLocally();
 
     todosArray.push(todoObj);
     localStorage.setItem("todos", JSON.stringify(todosArray));

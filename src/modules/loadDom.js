@@ -16,9 +16,6 @@ const overlayEdit = document.getElementById("overlay-edit");
 const closeEdit = document.getElementById("close-edit");
 
 
-
-
-
 const addTodoItem = (todoData) => {
     
     displayTodo(todoData[todoData.length - 1]);
@@ -346,14 +343,7 @@ const closeModal = (modalAdd, overlay) => {
     overlay.classList.remove("active");
 }
 
-/* Handles the interaction between de user and the UI */
-const loadTodo = () => {
-
-    let localData = JSON.parse(localStorage.getItem("todos"));
-
-    for (let index in localData) {
-        displayTodo(localData[index]);
-    }
+const listeners = () => {
     
     newTodoBtn.addEventListener("click", (e) => {
         todoForm.reset();
@@ -383,7 +373,19 @@ const loadTodo = () => {
         addTodoItem(todoData);
         closeModal(modalAdd, overlayBg);
     });
+}
 
+/* Handles the interaction between de user and the UI */
+const loadTodo = () => {
+
+    let localData = JSON.parse(localStorage.getItem("todos"));
+
+    for (let index in localData) {
+        displayTodo(localData[index]);
+    }
+
+    listeners();
+    
 }
 
 export default loadTodo;
