@@ -8,6 +8,7 @@ const modalAdd = document.getElementById("overlay-add");
 const overlayBg = document.getElementById("overlay-bg");
 const todoForm = document.getElementById("todo-form");
 const closeX = document.getElementById("close-modal");
+const labelInput = document.querySelectorAll(".create-new-priority");
 const submitBtn = document.getElementById("todo-submit");
 const overlayDetails = document.getElementById("overlay-details");
 const closeDet = document.getElementById("close-details");
@@ -256,21 +257,13 @@ const showDetails = (todoData) => {
     name.classList.add("details-title");
     name.textContent = todoData.title;
 
-    //project element
-    const project = document.createElement("div");
-    project.classList.add("details-project");
-    
-    const projectTitle = document.createElement("span");
-    projectTitle.textContent = "Project: ";
-
-    const projectContent = document.createElement("span");
-    
     //priority element
     const prio = document.createElement("div");
     prio.classList.add("details-priority");
 
     const prioTitle = document.createElement("span");
     prioTitle.textContent = "Priority: ";
+    prioTitle.classList.add("span-det");
 
     const prioCont = document.createElement("span");
 
@@ -286,6 +279,8 @@ const showDetails = (todoData) => {
     date.classList.add("details-date");
 
     const dateTitle = document.createElement("span");
+    dateTitle.classList.add("span-det");
+    dateTitle.textContent = "Due Date: ";
     
     /* converts date into an string with the format "January 12th, 2023" */
     const dateObject = new Date(todoData.date);
@@ -303,13 +298,13 @@ const showDetails = (todoData) => {
 
     const detailsTitle = document.createElement("span");
     detailsTitle.textContent = "Details: ";
+    detailsTitle.classList.add("span-det");
 
     const detailsContent = document.createElement("span");
     detailsContent.textContent = todoData.details;
 
 
     //renders the contents
-    project.appendChild(projectTitle);
 
     prio.appendChild(prioTitle);
     prio.appendChild(prioCont);
@@ -321,12 +316,10 @@ const showDetails = (todoData) => {
     details.appendChild(detailsContent);
 
     detailsCont.appendChild(name);
-    detailsCont.appendChild(project);
     detailsCont.appendChild(prio);
     detailsCont.appendChild(date);
     detailsCont.appendChild(details);
     
-
 }
 
 
@@ -341,6 +334,22 @@ const setActive = (button, overlay) => {
 const closeModal = (modalAdd, overlay) => {
     modalAdd.classList.remove("active");
     overlay.classList.remove("active");
+}
+//removes active class when another priority is active
+const removeActivePriority = () => {
+    labelInput.forEach(btn => {
+    
+        btn.classList.remove("active");
+
+    });
+}
+
+const activePriority = (e) => {
+     // removes active status from all buttons
+     removeActivePriority();
+     // apply active status to the selected button
+     const priority = e.target.textContent.toLowerCase();
+     e.target.classList.add("active");
 }
 
 const listeners = () => {
@@ -366,6 +375,13 @@ const listeners = () => {
 
     closeEdit.addEventListener("click", (e) => {
         closeModal(overlayEdit, overlayBg);
+    });
+    
+    //manages active status of the priority radio buttons
+    labelInput.forEach(btn => {
+        btn.addEventListener('click', e =>{
+            activePriority(e);
+        });
     });
 
     submitBtn.addEventListener("click", (e) => {

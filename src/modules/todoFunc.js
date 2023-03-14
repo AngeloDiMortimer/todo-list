@@ -21,10 +21,10 @@ const getFormInput = () => {
 }
 
 const getEditInput = () => {
-    let editTitle = document.getElementById("edit-todo-title").value;
-    let editDetails = document.getElementById("edit-todo-details").value;
-    let editDate = document.getElementById("edit-todo-date").value;
-    let editPriority = document.querySelector('input[name="create-edit-priority"]:checked').value;
+    const editTitle = document.getElementById("edit-todo-title").value;
+    const editDetails = document.getElementById("edit-todo-details").value;
+    const editDate = document.getElementById("edit-todo-date").value;
+    const editPriority = document.querySelector('input[name="create-edit-priority"]:checked').value;
 
     return new Todo(editTitle, editDetails, editDate, editPriority);
 }
@@ -65,6 +65,7 @@ const addEdit = (title) => {
 
     
 }
+
 
 const addTodo = () => {
     
