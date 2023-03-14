@@ -197,24 +197,186 @@ body {
     top: 50%;
     left: 50%;
     max-width: 100%;
-    padding: 20px;
-    background-color: #8412bd;
-    border-radius: 20px;
+    height: 27rem;
+    width: 60rem;
+    background-color: #f8fafc;
     text-align: center;
     transition: 0.2s ease-in-out;
     transform: translate(-50%, -50%) scale(0);
     display: flex;
+    flex-direction: column;
 }
 
 .overlay-add.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.modal-add-header {
+    display: flex;
+    background-color: #b45309;
+    color: #f8fafc;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
 .close-modal {
+    font-weight: 700;
+    font-size: 2.2rem;
     cursor: pointer;
 }
 
+.new-entry {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 1.5rem;
+}
 
+.create-new-input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    resize: none;
+}
+
+.create-new-input:focus {
+    outline: none;
+}
+
+.create-new-input-big {
+    height: 8.7rem;
+    margin-bottom: auto;
+}
+
+.create-new-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+}
+
+.create-new-date-title {
+    margin-right: 1rem;
+}
+
+.create-new-date-input {
+    padding: .5rem 1rem;
+    border: 1px solid #3ba395;
+    border-radius: 5px;
+    color: #3ba395;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.create-new-priority-submit-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-priority {
+    display: flex;
+    align-items: center;
+}
+
+.priority-title {
+    margin-right: 1rem;
+}
+
+.create-priority input[type="radio"] {
+    position: relative;
+    left: 2.2rem;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+
+.create-new-priority {
+    
+    display: inline-block;
+    margin: 0 1.5rem 0 -5px;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+
+.create-new-priority.low {
+    border: 1px solid green;
+    color: green;
+}
+
+.create-new-priority.low:hover {
+    background-color: green;
+    color: #f8fafc;
+}
+
+.create-new-priority.low.active {
+    background-color: green;
+    color: #f8fafc;
+}
+
+.create-new-priority.medium {
+    border: 1px solid orange;
+    color: orange;
+}
+
+.create-new-priority.medium:hover {
+    background-color: orange;
+    color: #f8fafc;
+}
+
+.create-new-priority.medium.active {
+    background-color: orange;
+    color: #f8fafc;
+}
+
+.create-new-priority.high {
+    border: 1px solid red;
+    color: red;
+}
+
+.create-new-priority.high:hover {
+    background-color: red;
+    color: #f8fafc;
+}
+
+.create-new-priority.high.active {
+    background-color: red;
+    color: #f8fafc;
+}
+
+.create-new-todo-submit {
+    text-align: center;
+    align-self: center;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    border: 1px solid #3ba395;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #3ba395;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.create-new-todo-submit:hover {
+    color: #f8fafc;
+    background-color: #3ba395;
+}
+
+/* background */
 .overlay-bg {
     position: fixed;
     display: none;
@@ -229,12 +391,14 @@ body {
     display: block;
 }
 
+/* Details Window */
+
 .overlay-details {
-    background-color: #8412bd;
+    background-color: #f8fafc;
     top: 50%;
     left: 50%;
     max-width: 100%;
-    padding: 20px;
+    width: 39rem;
     transition: 0.2s ease-in-out;
     position: fixed;
     transform: translate(-50%, -50%) scale(0);
@@ -245,6 +409,34 @@ body {
 
 .overlay-details.active {
     transform: translate(-50%, -50%) scale(1);
+}
+
+.header-det {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b45309;
+    color: #f8fafc;
+    padding: 0 1rem;
+}
+
+.close-details {
+    font-weight: 700;
+    font-size: 2.2rem;
+    cursor: pointer;
+}
+
+.details-content {
+    padding: 1.2rem;
+}
+
+.details-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem
+}
+
+.span-det {
+    font-weight: 700;
 }
 
 .overlay-edit {

@@ -17,18 +17,10 @@
     
         <form class="todo-form" id="todo-form">
             <div class="modal-add-header">
-                <h2>Create a new...</h2>
+                <h3>Create a new To-Do...</h3>
                 <div class="close-modal" id="close-modal">x</div>
             </div>
             
-            <div class="modal-add-content">
-                <div class="side-bar-modal">
-                    <ul class="modal-options">
-                        <li>To Do</li>
-                        <li>Project</li>
-                    </ul>
-                </div>
-            </div>
 
             <div class="new-entry">
                 <textarea class="create-new-input" placeholder="Title: Pay the rent" 
@@ -51,15 +43,15 @@
                         <div class="priority-title">Priority:</div>
                         <input type="radio" id="create-new low"  
                         name="create-new-priority" value="low" required>
-                        <label for="create-new-low" class="create-new-priority low">Low</label>
+                        <label for="create-new low" class="create-new-priority low">Low</label>
         
                         <input type="radio" id="create-new medium" 
                         name="create-new-priority" value="medium" required>
-                        <label for="create-new-medium" class="create-new-priority medium">Medium</label>
+                        <label for="create-new medium" class="create-new-priority medium">Medium</label>
         
                         <input type="radio" id="create-new high" 
                         name="create-new-priority" value="high" required>
-                        <label for="create-new-high" class="create-new-priority high">High</label >
+                        <label for="create-new high" class="create-new-priority high">High</label >
 
                     </div>   
                     
@@ -80,7 +72,10 @@
     </div>
     
     <div class="overlay-details" id="overlay-details">
-        <div class="close-details" id="close-details">x</div>
+        <div class="header-det">
+            <h4 class="header-title">Details</h4>
+            <div class="close-details" id="close-details">x</div>
+        </div>
         <div class="details-content" id="details-cont">
            
         </div>
