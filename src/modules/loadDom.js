@@ -387,8 +387,7 @@ const removeActivePriority = (labels) => {
 const activePriority = (e, labels) => {
      // removes active status from all buttons
      removeActivePriority(labels);
-     // apply active status to the selected button
-     const priority = e.target.textContent.toLowerCase();
+     
      e.target.classList.add("active");
 }
 
@@ -403,10 +402,12 @@ const listeners = () => {
         closeModal(modalAdd, overlayBg);
         closeModal(overlayDetails, overlayBg);
         closeModal(overlayEdit, overlayBg);
+        removeActivePriority(labelInput);
     });
 
     closeX.addEventListener("click", (e) => {
         closeModal(modalAdd, overlayBg);
+        removeActivePriority(labelInput);
     });
     
     closeDet.addEventListener("click", (e) => {
@@ -428,6 +429,7 @@ const listeners = () => {
         let todoData = addTodo();
         addTodoItem(todoData);
         closeModal(modalAdd, overlayBg);
+        removeActivePriority(labelInput);
     });
 }
 
