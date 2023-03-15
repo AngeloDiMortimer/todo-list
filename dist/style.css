@@ -120,8 +120,19 @@ body {
     align-items: center;
     background-color: #e5e7eb;
     padding: 1rem;
-    border-left: 3px solid red;
     margin-bottom: 1rem;
+}
+
+.item-todo.low {
+    border-left: 5px solid green;
+}
+
+.item-todo.medium {
+    border-left: 5px solid orange;
+}
+
+.item-todo.high {
+    border-left: 5px solid red;
 }
 
 .todo-complete {
@@ -130,10 +141,25 @@ body {
     width: 1.5rem;
     border-radius: 3px;
     border: 2px solid #3ba395;
+    cursor: pointer;
+}
+
+.todo-complete.checked {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: block;
+    background: url(images/check.png), #3ba395;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .todo-title {
     margin-right: auto;
+}
+
+.todo-title.checked {
+    color: #8d8d8d;
+    text-decoration: line-through;
 }
 
 .details-btn {
@@ -230,7 +256,6 @@ body {
 .new-entry {
     display: flex;
     flex-direction: column;
-    
     padding: 1.5rem;
 }
 
@@ -284,7 +309,7 @@ body {
 }
 
 .priority-title {
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
 .create-priority input[type="radio"] {
@@ -439,12 +464,13 @@ body {
     font-weight: 700;
 }
 
+/* Edit Window */
 .overlay-edit {
-    background-color: #8412bd;
+    background-color: #f8fafc;
     top: 50%;
     left: 50%;
     max-width: 100%;
-    padding: 20px;
+    width: 47rem;
     transition: 0.2s ease-in-out;
     position: fixed;
     transform: translate(-50%, -50%) scale(0);
@@ -455,4 +481,157 @@ body {
 
 .overlay-edit.active {
     transform: translate(-50%, -50%) scale(1);
+}
+
+.header-ed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b45309;
+    color: #f8fafc;
+    padding: 0 1rem;
+}
+
+.edit-entry {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.create-edit-input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    resize: none;
+}
+
+.create-edit-input:focus {
+    outline: none;
+}
+
+.create-edit-input-big {
+    height: 8.7rem;
+    margin-bottom: auto;
+}
+
+.create-edit-date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+}
+
+.edit-date-title {
+    margin-right: 1rem;
+}
+
+.create-edit-date-input {
+    padding: .5rem 1rem;
+    border: 1px solid #3ba395;
+    border-radius: 5px;
+    color: #3ba395;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.edit-priority-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-priority {
+    display: flex;
+    align-items: center;
+}
+
+.edit-priority input[type="radio"] {
+    position: relative;
+    left: 2.2rem;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+
+.create-edit-priority {
+    
+    display: inline-block;
+    margin: 0 1.5rem 0 -5px;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+
+.create-edit-priority.low {
+    border: 1px solid green;
+    color: green;
+}
+
+.create-edit-priority.low:hover {
+    background-color: green;
+    color: #f8fafc;
+}
+
+.create-edit-priority.low.active {
+    background-color: green;
+    color: #f8fafc;
+}
+
+.create-edit-priority.medium {
+    border: 1px solid orange;
+    color: orange;
+}
+
+.create-edit-priority.medium:hover {
+    background-color: orange;
+    color: #f8fafc;
+}
+
+.create-edit-priority.medium.active {
+    background-color: orange;
+    color: #f8fafc;
+}
+
+.create-edit-priority.high {
+    border: 1px solid red;
+    color: red;
+}
+
+.create-edit-priority.high:hover {
+    background-color: red;
+    color: #f8fafc;
+}
+
+.create-edit-priority.high.active {
+    background-color: red;
+    color: #f8fafc;
+}
+
+.create-edit-todo-submit {
+    text-align: center;
+    align-self: center;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    border: 1px solid #3ba395;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #3ba395;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.create-edit-todo-submit:hover {
+    color: #f8fafc;
+    background-color: #3ba395;
 }

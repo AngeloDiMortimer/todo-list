@@ -1,4 +1,4 @@
-import {addTodo, removeToDo, addEdit} from "./todoFunc";
+import {addTodo, removeToDo, addEdit, toggleCheckbox} from "./todoFunc";
 
 import {format} from "date-fns";
 
@@ -62,6 +62,23 @@ const displayTodo = (todoData) => {
     iconDel.src = "images/trash-can.svg";
     iconDel.alt = "delete icon";
 
+    if (todoData.priority == "low") {
+        itemTodo.classList.add("low");
+    }
+
+    if (todoData.priority == "medium") {
+        itemTodo.classList.add("medium");
+    }
+
+    if (todoData.priority == "high") {
+        itemTodo.classList.add("high");
+    }
+
+    if (todoData.checked === true) {
+        todoComplete.classList.add("checked");
+        todoTitle.classList.add("checked");
+    }
+
     todoDel.appendChild(iconDel);
     todoEdit.appendChild(iconEdit);
 
@@ -73,6 +90,22 @@ const displayTodo = (todoData) => {
     itemTodo.appendChild(todoDel);
 
     main.appendChild(itemTodo);
+
+    todoComplete.addEventListener("click", () => {
+        
+        let isChecked = toggleCheckbox(todoData.title);
+        
+        if (isChecked === true) {
+            todoComplete.classList.add("checked");
+            todoTitle.classList.add("checked");
+        } else {
+            todoComplete.classList.remove("checked");
+            todoTitle.classList.remove("checked");
+        }
+
+    });
+
+    
 
     btnDetails.addEventListener("click", (e) => {
         setActive(overlayDetails, overlayBg);
@@ -173,7 +206,7 @@ const showEditForm = (todoData) => {
 
     prioLowLabel.classList.add("create-edit-priority");
     prioLowLabel.classList.add("low");
-    prioLowLabel.htmlFor = "create-edit-low";
+    prioLowLabel.htmlFor = "create-edit low";
     prioLowLabel.textContent = "Low";
 
     /* Priority Medium */
@@ -186,7 +219,7 @@ const showEditForm = (todoData) => {
 
     prioMediumLabel.classList.add("create-edit-priority");
     prioMediumLabel.classList.add("medium");
-    prioMediumLabel.htmlFor = "create-edit-medium";
+    prioMediumLabel.htmlFor = "create-edit medium";
     prioMediumLabel.textContent = "Medium";
 
     /* Priority High */
@@ -198,7 +231,7 @@ const showEditForm = (todoData) => {
 
     prioHighLabel.classList.add("create-edit-priority");
     prioHighLabel.classList.add("high");
-    prioHighLabel.htmlFor = "create-edit-high";
+    prioHighLabel.htmlFor = "create-edit high";
     prioHighLabel.textContent = "High";
 
     /* Submit Button */
@@ -232,6 +265,13 @@ const showEditForm = (todoData) => {
 
     editForm.appendChild(editEntry);
     editCont.appendChild(editForm);
+
+    const labelEdit = document.querySelectorAll(".create-edit-priority");
+    labelEdit.forEach(btn => {
+        btn.addEventListener('click', e =>{
+            activePriority(e, labelEdit);
+        });
+    });
 
     editSubmitBtn.addEventListener("click", (e) => {
         addEdit(todoData.title);
@@ -336,17 +376,17 @@ const closeModal = (modalAdd, overlay) => {
     overlay.classList.remove("active");
 }
 //removes active class when another priority is active
-const removeActivePriority = () => {
-    labelInput.forEach(btn => {
+const removeActivePriority = (labels) => {
+    labels.forEach(btn => {
     
         btn.classList.remove("active");
 
     });
 }
 
-const activePriority = (e) => {
+const activePriority = (e, labels) => {
      // removes active status from all buttons
-     removeActivePriority();
+     removeActivePriority(labels);
      // apply active status to the selected button
      const priority = e.target.textContent.toLowerCase();
      e.target.classList.add("active");
@@ -380,7 +420,7 @@ const listeners = () => {
     //manages active status of the priority radio buttons
     labelInput.forEach(btn => {
         btn.addEventListener('click', e =>{
-            activePriority(e);
+            activePriority(e, labelInput);
         });
     });
 
