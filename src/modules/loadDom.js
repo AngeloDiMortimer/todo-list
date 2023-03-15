@@ -3,6 +3,7 @@ import {addTodo, removeToDo, addEdit, toggleCheckbox} from "./todoFunc";
 import {format} from "date-fns";
 
 const main = document.getElementById("main");
+const defaultMsg = document.createElement("div");
 const newTodoBtn = document.getElementById("new-todo");
 const modalAdd = document.getElementById("overlay-add");
 const overlayBg = document.getElementById("overlay-bg");
@@ -122,6 +123,12 @@ const displayTodo = (todoData) => {
     todoDel.addEventListener("click", () => {
         removeToDo(todoData.title);
         itemTodo.remove();
+        let localData = JSON.parse(localStorage.getItem("todos"));
+
+        if (localData.length === 0) {
+            defaultMessage();
+        }
+
     })
 
 }
@@ -391,6 +398,24 @@ const activePriority = (e, labels) => {
      e.target.classList.add("active");
 }
 
+const defaultMessage = () => {
+    defaultMsg.classList.add("default-message");
+
+    const newTodoHead = document.createElement("div");
+    newTodoHead.classList.add("message-head");
+    newTodoHead.textContent = "Empty!";
+
+    const newTodoText = document.createElement("div");
+    newTodoText.classList.add("message-text");
+    newTodoText.textContent = "Please add a new To-Do";
+
+    defaultMsg.appendChild(newTodoHead);
+    defaultMsg.appendChild(newTodoText);
+
+    main.appendChild(defaultMsg);
+
+}
+
 const listeners = () => {
     
     newTodoBtn.addEventListener("click", (e) => {
@@ -430,6 +455,7 @@ const listeners = () => {
         addTodoItem(todoData);
         closeModal(modalAdd, overlayBg);
         removeActivePriority(labelInput);
+        defaultMsg.remove();
     });
 }
 
@@ -438,9 +464,15 @@ const loadTodo = () => {
 
     let localData = JSON.parse(localStorage.getItem("todos"));
 
-    for (let index in localData) {
-        displayTodo(localData[index]);
+    if (localData.length != 0) { //checks if there aren't 0 items inside the array
+        defaultMsg.remove();
+        for (let index in localData) {
+            displayTodo(localData[index]);
+        }
+    } else {
+        defaultMessage();
     }
+
 
     listeners();
     
