@@ -115,6 +115,18 @@ body {
     overflow-y: auto;
 }
 
+.default-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-head {
+    margin-bottom: 2rem;
+    font-size: 2.8rem;
+}
+
 .item-todo {
     display: flex;
     align-items: center;
