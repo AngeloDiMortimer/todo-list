@@ -457,6 +457,7 @@ const listeners = () => {
         removeActivePriority(labelInput);
         defaultMsg.remove();
     });
+    
 }
 
 /* Handles the interaction between de user and the UI */
@@ -464,14 +465,15 @@ const loadTodo = () => {
 
     let localData = JSON.parse(localStorage.getItem("todos"));
 
-    if (localData.length != 0) { //checks if there aren't 0 items inside the array
+    if (localData != null) { //checks if there aren't 0 items inside the array
         defaultMsg.remove();
         for (let index in localData) {
             displayTodo(localData[index]);
         }
-    } else {
-        defaultMessage();
     }
+    if (localData.length === 0){
+        defaultMessage();
+    } 
 
 
     listeners();
