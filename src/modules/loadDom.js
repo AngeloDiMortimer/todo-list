@@ -465,15 +465,17 @@ const loadTodo = () => {
 
     let localData = JSON.parse(localStorage.getItem("todos"));
 
-    if (localData != null) { //checks if there aren't 0 items inside the array
+    if (localData != null) { //checks if there aren't items inside the array
         defaultMsg.remove();
         for (let index in localData) {
             displayTodo(localData[index]);
         }
     }
-    if (localData.length === 0){
+    if (localStorage.length === 0){
         defaultMessage();
-    } 
+    } else if (localData.length === 0) {
+        defaultMessage();
+    }
 
 
     listeners();
